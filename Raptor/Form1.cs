@@ -24,6 +24,7 @@ namespace Raptor
         private void Form1_Load(object sender, EventArgs e)
         {
             label10.Text = "$" + Settings.Default["Raptor"].ToString();
+            label11.Text = "$" + Settings.Default["Raptor2"].ToString();
         }
 
         private void rent_raptor(int a, int b, int c)
@@ -38,6 +39,18 @@ namespace Raptor
             Settings.Default.Save();
         }
 
+        private void rent_raptor2(int a, int b, int c)
+        {
+            DateTime dt = DateTime.Now.AddMinutes(a).AddHours(b);
+            raptor2_status.Text = "Занят до " + dt.ToShortTimeString();
+            textBox4.Visible = true;
+            label12.Text = textBox3.Text;
+            raptor2_money = raptor2_money + c;
+            label11.Text = "$" + raptor2_money.ToString();
+            Settings.Default["Raptor2"] = raptor2_money;
+            Settings.Default.Save();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             rent_raptor(30, 1, 5000);
@@ -45,17 +58,17 @@ namespace Raptor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            rent_raptor(0, 1, 6000);
+            rent_raptor(0, 2, 6000);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            rent_raptor(0, 1, 9000);
+            rent_raptor(0, 3, 9000);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            rent_raptor(0, 1, 11000);
+            rent_raptor(0, 4, 11000);
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -63,9 +76,45 @@ namespace Raptor
             label8.Text = textBox3.Text;
         }
 
-        private void textBox3_Enter(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e)
         {
-            textBox3.Visible = false;
+            rent_raptor2(30, 1, 5000);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            rent_raptor2(0, 2, 6000);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            rent_raptor2(0, 3, 9000);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            rent_raptor2(0, 4, 11000);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            label12.Text = textBox4.Text;
+        }
+
+        private void textBox4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox4.Visible = false;
+            }
+        }
+
+        private void textBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox3.Visible = false;
+            }
         }
     }
 }
