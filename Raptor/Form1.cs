@@ -15,7 +15,11 @@ namespace Raptor
     {
         int raptor_money = Int32.Parse(Settings.Default["Raptor"].ToString());
         int raptor2_money = Int32.Parse(Settings.Default["Raptor2"].ToString());
- 
+        int summ = Int32.Parse(Settings.Default["Всего"].ToString());
+        int sold = Int32.Parse(Settings.Default["sold"].ToString());
+        int sold2 = Int32.Parse(Settings.Default["sold2"].ToString());
+
+
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +29,16 @@ namespace Raptor
         {
             label10.Text = "$" + Settings.Default["Raptor"].ToString();
             label11.Text = "$" + Settings.Default["Raptor2"].ToString();
+            label7.Text = "$" + Settings.Default["Всего"].ToString();
+            if (sold == 0)
+            {
+                raptor_status.Text = "Свободен";
+            }
+            else
+            {
+                DateTime dt = DateTime.Parse(Settings.Default["raptor_time"].ToString());
+                raptor_status.Text = "Занят до " + dt.ToShortTimeString();
+            }
         }
 
         private void rent_raptor(int a, int b, int c)
@@ -32,9 +46,13 @@ namespace Raptor
             DateTime dt = DateTime.Now.AddMinutes(a).AddHours(b);
             raptor_status.Text = "Занят до " + dt.ToShortTimeString();
             textBox3.Visible = true;
+            label8.Visible = false;
             label8.Text = textBox3.Text;
             raptor_money = raptor_money + c;
             label10.Text = "$" + raptor_money.ToString();
+            sold = 1;
+            Settings.Default["sold"] = sold;
+            Settings.Default["raptor_time"] = dt;
             Settings.Default["Raptor"] = raptor_money;
             Settings.Default.Save();
         }
@@ -44,9 +62,11 @@ namespace Raptor
             DateTime dt = DateTime.Now.AddMinutes(a).AddHours(b);
             raptor2_status.Text = "Занят до " + dt.ToShortTimeString();
             textBox4.Visible = true;
+            label12.Visible = false;
             label12.Text = textBox3.Text;
             raptor2_money = raptor2_money + c;
             label11.Text = "$" + raptor2_money.ToString();
+            Settings.Default["raptor2_time"] = dt;
             Settings.Default["Raptor2"] = raptor2_money;
             Settings.Default.Save();
         }
@@ -74,6 +94,7 @@ namespace Raptor
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             label8.Text = textBox3.Text;
+            label8.Visible = false;
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -99,6 +120,7 @@ namespace Raptor
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             label12.Text = textBox4.Text;
+            label12.Visible = false;
         }
 
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
@@ -106,6 +128,7 @@ namespace Raptor
             if (e.KeyCode == Keys.Enter)
             {
                 textBox4.Visible = false;
+                label12.Visible = true;
             }
         }
 
@@ -114,7 +137,61 @@ namespace Raptor
             if (e.KeyCode == Keys.Enter)
             {
                 textBox3.Visible = false;
+                label8.Visible = true;
+
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            raptor_status.Text = "Занят до рестарта";
+            textBox3.Visible = true;
+            raptor_money = raptor_money + Int32.Parse(textBox2.Text);
+            label10.Text = "$" + raptor_money.ToString();
+            Settings.Default["Raptor"] = raptor_money;
+            Settings.Default.Save();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            raptor2_status.Text = "Занят до рестарта";
+            textBox4.Visible = true;
+            raptor2_money = raptor2_money + Int32.Parse(textBox5.Text);
+            label11.Text = "$" + raptor2_money.ToString();
+            Settings.Default["Raptor2"] = raptor2_money;
+            Settings.Default.Save();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            raptor_status.Text = "Свободен";
+            raptor2_status.Text = "Свободен";
+            raptor_money = 0;
+            raptor2_money = 0;
+            label10.Text = "$" + raptor_money.ToString();
+            label11.Text = "$" + raptor2_money.ToString();
+            Settings.Default["Raptor"] = raptor_money;
+            Settings.Default["Raptor2"] = raptor2_money;
+            Settings.Default.Save();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            summ = summ + raptor_money + raptor2_money;
+            raptor_money = 0;
+            raptor2_money = 0;
+            label7.Text = "$" + summ.ToString();
+            label10.Text = "$" + raptor_money.ToString();
+            label11.Text = "$" + raptor2_money.ToString();
+            Settings.Default["Всего"] = summ;
+            Settings.Default["Raptor"] = raptor_money;
+            Settings.Default["Raptor2"] = raptor2_money;
+            Settings.Default.Save();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

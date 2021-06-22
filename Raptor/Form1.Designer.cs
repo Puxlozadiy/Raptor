@@ -29,6 +29,7 @@ namespace Raptor
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -67,6 +68,12 @@ namespace Raptor
             this.button14 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button17 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -117,6 +124,7 @@ namespace Raptor
             this.button5.TabIndex = 4;
             this.button5.Text = "Рестарт";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label1
             // 
@@ -146,6 +154,7 @@ namespace Raptor
             this.button6.TabIndex = 10;
             this.button6.Text = "Рестарт";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -264,7 +273,7 @@ namespace Raptor
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(138, 355);
+            this.label9.Location = new System.Drawing.Point(169, 355);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(96, 18);
             this.label9.TabIndex = 21;
@@ -272,7 +281,9 @@ namespace Raptor
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(141, 378);
+            this.textBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox3.Location = new System.Drawing.Point(172, 378);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(86, 20);
             this.textBox3.TabIndex = 22;
@@ -338,7 +349,7 @@ namespace Raptor
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(650, 378);
+            this.textBox4.Location = new System.Drawing.Point(681, 378);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(86, 20);
             this.textBox4.TabIndex = 35;
@@ -350,7 +361,7 @@ namespace Raptor
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(647, 355);
+            this.label13.Location = new System.Drawing.Point(678, 355);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(96, 18);
             this.label13.TabIndex = 34;
@@ -429,11 +440,66 @@ namespace Raptor
             this.label18.TabIndex = 26;
             this.label18.Text = "Кол-во часов:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(312, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(139, 18);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Всего заработано:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(457, 99);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 18);
+            this.label7.TabIndex = 40;
+            this.label7.Text = "$";
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(391, 124);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(97, 25);
+            this.button16.TabIndex = 42;
+            this.button16.Text = "Закончить день";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(288, 124);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(97, 25);
+            this.button15.TabIndex = 43;
+            this.button15.Text = "Сброс";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(300, 415);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(97, 23);
+            this.button17.TabIndex = 44;
+            this.button17.Text = "Объявление";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button17);
+            this.Controls.Add(this.button15);
+            this.Controls.Add(this.button16);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
@@ -520,6 +586,12 @@ namespace Raptor
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button17;
     }
 }
 

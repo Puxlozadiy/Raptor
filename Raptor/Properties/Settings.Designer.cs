@@ -68,5 +68,65 @@ namespace Raptor.Properties {
                 this["Raptor2"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Всего {
+            get {
+                return ((int)(this["Всего"]));
+            }
+            set {
+                this["Всего"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int sold {
+            get {
+                return ((int)(this["sold"]));
+            }
+            set {
+                this["sold"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int sold2 {
+            get {
+                return ((int)(this["sold2"]));
+            }
+            set {
+                this["sold2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string raptor_owner {
+            get {
+                return ((string)(this["raptor_owner"]));
+            }
+            set {
+                this["raptor_owner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string raptor2_owner {
+            get {
+                return ((string)(this["raptor2_owner"]));
+            }
+            set {
+                this["raptor2_owner"] = value;
+            }
+        }
     }
 }
