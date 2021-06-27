@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Raptor.Properties;
+using System;
+using System.Diagnostics;
 using System.Windows.Forms;
-using Raptor.Properties;
+
 
 namespace Raptor
 {
@@ -189,9 +184,31 @@ namespace Raptor
             Settings.Default.Save();
         }
 
+
         private void button17_Click(object sender, EventArgs e)
         {
+            string python = "C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py\\venv\\Scripts\\python.exe";
+            string myPythonApp = "C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py\\main.py";
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
+            myProcessStartInfo.UseShellExecute = true;
+            myProcessStartInfo.CreateNoWindow = true;
+            myProcessStartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            myProcessStartInfo.Arguments = myPythonApp;
+            Process myProcess = new Process();
+            myProcess.StartInfo = myProcessStartInfo;
+            myProcess.Start();
+            myProcess.WaitForExit();
+            myProcess.Close();
+            Console.WriteLine("Сообщение должно было отправиться!");
 
+            //System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd");
+            //procStartInfo.RedirectStandardOutput = true;
+            //procStartInfo.UseShellExecute = false;
+            //procStartInfo.CreateNoWindow = true;
+            //procStartInfo.Arguments = "cd C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py" + "python main.py";
+            //System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            //proc.StartInfo = procStartInfo;
+            //proc.Start();
         }
     }
 }
