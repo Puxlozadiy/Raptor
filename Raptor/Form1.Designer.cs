@@ -74,6 +74,7 @@ namespace Raptor
             this.button15 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button17 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -480,9 +481,13 @@ namespace Raptor
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(300, 415);
+            this.button17.Location = new System.Drawing.Point(344, 415);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(97, 23);
             this.button17.TabIndex = 44;
@@ -490,11 +495,23 @@ namespace Raptor
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(312, 397);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(48, 15);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "label14";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button16);
@@ -592,6 +609,7 @@ namespace Raptor
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Label label14;
     }
 }
 

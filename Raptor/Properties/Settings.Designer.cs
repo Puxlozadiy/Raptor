@@ -128,5 +128,28 @@ namespace Raptor.Properties {
                 this["raptor2_owner"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ad_bool {
+            get {
+                return ((int)(this["ad_bool"]));
+            }
+            set {
+                this["ad_bool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime cooldown {
+            get {
+                return ((global::System.DateTime)(this["cooldown"]));
+            }
+            set {
+                this["cooldown"] = value;
+            }
+        }
     }
 }

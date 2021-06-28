@@ -2,7 +2,8 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-
+using IronPython.Hosting;
+using System.IO;
 
 namespace Raptor
 {
@@ -13,6 +14,8 @@ namespace Raptor
         int summ = Int32.Parse(Settings.Default["Всего"].ToString());
         int sold = Int32.Parse(Settings.Default["sold"].ToString());
         int sold2 = Int32.Parse(Settings.Default["sold2"].ToString());
+        int ad_bool = Int32.Parse(Settings.Default["ad_bool"].ToString());
+
 
 
         public Form1()
@@ -31,9 +34,24 @@ namespace Raptor
             }
             else
             {
-                DateTime dt = DateTime.Parse(Settings.Default["raptor_time"].ToString());
+                DateTime dt = DateTime.Parse(Settings.Default["raptor2_time"].ToString());
                 raptor_status.Text = "Занят до " + dt.ToShortTimeString();
             }
+            if (sold2 == 0)
+            {
+                raptor2_status.Text = "Свободен";
+            }
+            else
+            {
+                DateTime dt = DateTime.Parse(Settings.Default["raptor2_time"].ToString());
+                raptor2_status.Text = "Занят до " + dt.ToShortTimeString();
+            }
+            if (ad_bool == 0)
+            {
+                label14.Text = "Статус объявления: Занято!";
+            }
+            else label14.Text = "Статус объявления: Свободно!";
+            
         }
 
         private void rent_raptor(int a, int b, int c)
@@ -184,31 +202,71 @@ namespace Raptor
             Settings.Default.Save();
         }
 
+        private void start_script()
+        {
+            Process cmd = new Process();
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+            cmd.Start();
 
+            cmd.StandardInput.WriteLine("cd..");
+            cmd.StandardInput.WriteLine("cd..");
+            cmd.StandardInput.WriteLine("cd..");
+            cmd.StandardInput.WriteLine("cd..");
+            cmd.StandardInput.WriteLine("cd..");
+            cmd.StandardInput.WriteLine("cd..");
+            cmd.StandardInput.WriteLine("cd C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py");
+            cmd.StandardInput.WriteLine("python main.py");
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            
+            cmd.Close();
+        }
         private void button17_Click(object sender, EventArgs e)
         {
-            string python = "C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py\\venv\\Scripts\\python.exe";
-            string myPythonApp = "C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py\\main.py";
-            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
-            myProcessStartInfo.UseShellExecute = true;
-            myProcessStartInfo.CreateNoWindow = true;
-            myProcessStartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-            myProcessStartInfo.Arguments = myPythonApp;
-            Process myProcess = new Process();
-            myProcess.StartInfo = myProcessStartInfo;
-            myProcess.Start();
-            myProcess.WaitForExit();
-            myProcess.Close();
-            Console.WriteLine("Сообщение должно было отправиться!");
+            if (ad_bool == 1)
+            {
+                start_script();
+                ad_bool = 0;
+                label14.Text = "Статус объявления: Занято!";
+            }
+            else
+            {
+                DateTime dt = DateTime.Parse(Settings.Default["cooldown"].ToString());
+                int compare = DateTime.Now.CompareTo(dt);
+                if (compare > 0)
+                {
+                    start_script();
+                    ad_bool = 1;
+                    label14.Text = "Статус объявления: Свободно!";
+                    Settings.Default["cooldown"] = DateTime.Now.AddMinutes(30);
+                    Settings.Default.Save();
+                }
+                else
+                {
+                    label14.Text = "Сейчас нельзя отправить объявление!";
+                    timer1.Interval = 5000;
+                    timer1.Start();
+                }
+            }
+        }
 
-            //System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd");
-            //procStartInfo.RedirectStandardOutput = true;
-            //procStartInfo.UseShellExecute = false;
-            //procStartInfo.CreateNoWindow = true;
-            //procStartInfo.Arguments = "cd C:\\Users\\Puxlozadiy\\PycharmProjects\\bot.py" + "python main.py";
-            //System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            //proc.StartInfo = procStartInfo;
-            //proc.Start();
+        private void label14_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (ad_bool == 0)
+            {
+                label14.Text = "Статус объявления: Занято!";
+            }
+            else label14.Text = "Статус объявления: Свободно!";
+            timer1.Stop();
         }
     }
 }
