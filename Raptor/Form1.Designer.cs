@@ -75,6 +75,7 @@ namespace Raptor
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button17 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // button1
@@ -296,7 +297,7 @@ namespace Raptor
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(138, 379);
+            this.label8.Location = new System.Drawing.Point(169, 379);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(0, 16);
             this.label8.TabIndex = 23;
@@ -319,6 +320,7 @@ namespace Raptor
             this.button12.TabIndex = 25;
             this.button12.Text = "Вернули";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button13
             // 
@@ -328,6 +330,7 @@ namespace Raptor
             this.button13.TabIndex = 38;
             this.button13.Text = "Вернули";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // label11
             // 
@@ -343,7 +346,7 @@ namespace Raptor
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(647, 379);
+            this.label12.Location = new System.Drawing.Point(678, 379);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(0, 16);
             this.label12.TabIndex = 36;
@@ -506,6 +509,10 @@ namespace Raptor
             this.label14.Text = "label14";
             this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,6 +617,7 @@ namespace Raptor
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
